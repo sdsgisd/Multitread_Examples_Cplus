@@ -31,8 +31,11 @@
 *.out
 *.app
 
-*.xcworkspacedata
+#Binary files
+Build/
+DerivedData/
+build/
+xcodebuild/
 
-*.xcscheme
-
+.DS_Store
 *.xcuserstate
