@@ -1,6 +1,5 @@
 //
 //  pthread.cpp
-//  parallel_processing1
 //
 //  Created by Sadashige Ishida on 12/16/17.
 //

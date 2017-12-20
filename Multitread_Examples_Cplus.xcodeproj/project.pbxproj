@@ -66,11 +66,11 @@
 		E15E454E1FE52F8200E218D0 /* Multitread_Examples_Cplus */ = {
 			isa = PBXGroup;
 			children = (
+				E15E45581FE52FA700E218D0 /* functions.h */,
+				E15E455A1FE52FA700E218D0 /* single_process.cpp */,
+				E15E45591FE52FA700E218D0 /* pthread.cpp */,
 				E15E45561FE52FA700E218D0 /* AppleGCD.cpp */,
 				E15E45571FE52FA700E218D0 /* cpp11_thread.cpp */,
-				E15E45581FE52FA700E218D0 /* functions.h */,
-				E15E45591FE52FA700E218D0 /* pthread.cpp */,
-				E15E455A1FE52FA700E218D0 /* single_process.cpp */,
 				E15E454F1FE52F8200E218D0 /* main.cpp */,
 			);
 			path = Multitread_Examples_Cplus;
@@ -257,6 +257,7 @@
 				E15E45551FE52F8200E218D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

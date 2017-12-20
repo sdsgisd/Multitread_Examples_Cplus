@@ -1,10 +1,7 @@
 //
 //  main.cpp
-//  parallel_processing1
 //
 //  Created by Sadashige Ishida on 12/16/17.
-//
-//  Reference (in Japanese): https://qiita.com/temoki/items/613f4ffa1d9bf751510a
 
 #include <iostream>
 
@@ -27,7 +24,6 @@ double computational_time(Func& target_func,const unsigned iteration, Args ...ar
     
 }
 
-
 int main(int argc, const char * argv[]) {
     using namespace std;
     
@@ -38,7 +34,7 @@ int main(int argc, const char * argv[]) {
     
     const bool with_computational_result=false;
     
-    cout<<"iteration="<<iteration_A<<", partition="<<partition_A<<endl;
+    cout<<"[Setting A] "<<"iteration="<<iteration_A<<", partition="<<partition_A<<endl;
     if(with_computational_result){
         cout<<"single process: "<<compute_pi_single_process(partition_A)<<endl;
         cout<<"pthread: "<<compute_pi_pthread(partition_A)<<endl;
@@ -46,24 +42,24 @@ int main(int argc, const char * argv[]) {
         cout<<"apple gcd: "<<compute_pi_apple_gcd(partition_A)<<endl;
         
     }
-    cout<<"single process: "<<computational_time(compute_pi_single_process, iteration_A, partition_A)<<endl;
-    cout<<"pthread: "<<computational_time(compute_pi_pthread, iteration_A, partition_A)<<endl;
-    cout<<"cpp11: "<<computational_time(compute_pi_cpp11_thread, iteration_A, partition_A)<<endl;
-    cout<<"apple gcd: "<<computational_time(compute_pi_apple_gcd, iteration_A, partition_A)<<endl;
+    cout<<"single process: "<<computational_time(compute_pi_single_process, iteration_A, partition_A)<<"ms"<<endl;
+    cout<<"pthread: "<<computational_time(compute_pi_pthread, iteration_A, partition_A)<<"ms"<<endl;
+    cout<<"cpp11: "<<computational_time(compute_pi_cpp11_thread, iteration_A, partition_A)<<"ms"<<endl;
+    cout<<"apple gcd: "<<computational_time(compute_pi_apple_gcd, iteration_A, partition_A)<<"ms"<<endl;
     
     cout<<endl;
     
-    cout<<"iteration="<<iteration_B<<", partition="<<partition_B<<endl;
+    cout<<"[Setting B] "<<"iteration="<<iteration_B<<", partition="<<partition_B<<endl;
     if(with_computational_result){
         cout<<"single process: "<<compute_pi_single_process(partition_B)<<endl;
         cout<<"pthread: "<<compute_pi_pthread(partition_B)<<endl;
         cout<<"cpp11: "<<compute_pi_cpp11_thread(partition_B)<<endl;
         cout<<"apple gcd: "<<compute_pi_apple_gcd(partition_B)<<endl;
     }
-    cout<<"single process: "<<computational_time(compute_pi_single_process, iteration_B, partition_B)<<endl;
-    cout<<"pthread: "<<computational_time(compute_pi_pthread, iteration_B, partition_B)<<endl;
-    cout<<"cpp11: "<<computational_time(compute_pi_cpp11_thread, iteration_B, partition_B)<<endl;
-    cout<<"apple gcd: "<<computational_time(compute_pi_apple_gcd, iteration_B, partition_B)<<endl;
+    cout<<"single process: "<<computational_time(compute_pi_single_process, iteration_B, partition_B)<<"ms"<<endl;
+    cout<<"pthread: "<<computational_time(compute_pi_pthread, iteration_B, partition_B)<<"ms"<<endl;
+    cout<<"cpp11: "<<computational_time(compute_pi_cpp11_thread, iteration_B, partition_B)<<"ms"<<endl;
+    cout<<"apple gcd: "<<computational_time(compute_pi_apple_gcd, iteration_B, partition_B)<<"ms"<<endl;
   
     return 0;
 }
