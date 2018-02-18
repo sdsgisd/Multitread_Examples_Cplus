@@ -13,7 +13,7 @@ class S {
 public:
     int k = 0;
     int l = 0;
-
+    S():k(0),l(0){};
 
 };
 
@@ -53,8 +53,6 @@ void atomic_increment() {
 
 
 
-
-
 auto exec_with_thread=[](auto f, int num ,auto... args){
     
     auto iterated_func=[=](const auto&... args){
@@ -85,7 +83,22 @@ double measure_timing(Func f, int ite,Args... args){
 }
 
 
+#include <future>
 
+auto exec_with_async=[](auto f, int num ,auto... args){
+    
+    auto iterated_func=[=](const auto&... args){
+        for(int i=0;i<num;++i){
+            f(args...);
+        }
+    };
+    
+    
+    std::async(std::launch::async, iterated_func,args...);
+    
+    iterated_func(args...);
+    
+};
 
 int main(void) {
     int ite=2;
@@ -94,7 +107,22 @@ int main(void) {
     
     cout<<"[atomic] time:"<<    measure_timing( exec_with_thread,ite,atomic_increment,num)/ite<<", value:"<<atomic_s.load().k<<endl;
     cout<<"[mutex] time:"<<    measure_timing( exec_with_thread,ite,mutex_increment,num)/ite<<", value:"<<mutex_s.k<<endl;
-
+    
+    //std::future<void> f1 = std::async(std::launch::async, ordinary_increment);
+    //f1.get();
+    
+    ordinary_s=S();
+    
+    //asyncでは保証されない。
+    cout<<"[async oridinary] time:"<<        measure_timing( exec_with_async,ite,ordinary_increment,num)/ite<<", value:"<<ordinary_s.k<<endl;
+    
+    atomic_s.store(S());
+    
+    cout<<"[async atomic] time:"<<        measure_timing( exec_with_async,ite,atomic_increment,num)/ite<<", value:"<<atomic_s.load().k<<endl;
+    
+    mutex_s=S();
+    cout<<"[async mutex] time:"<<        measure_timing( exec_with_async,ite,mutex_increment,num)/ite<<", value:"<<mutex_s.k<<endl;
+    
     return 10;
 }
 
